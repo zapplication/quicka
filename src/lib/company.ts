@@ -16,19 +16,16 @@ export const COMPANY = {
   // Trading name shown to customers
   tradingName: "Quicka",
 
-  // Legal name as registered at CIPC
-  // TODO: confirm — if the registered Pty Ltd name is different from
-  //       the trading name (e.g. "Quicka Holdings (Pty) Ltd"), update.
-  legalName: "Quicka",
+  // Legal name as registered at CIPC.
+  // Confirmed Pty Ltd by Andre.
+  legalName: "Quicka (Pty) Ltd",
 
-  // CIPC registration number — exact format from the CIPC certificate
-  // TODO: confirm the format. K-prefix indicates Close Corporation
-  //       (typical format: K2016/112724/23). Pty Ltd would be 2016/112724/07.
-  //       Andre provided "K2016112724" — formatted here as Close Corporation.
-  cipcRegNumber: "K2016/112724/23",
+  // CIPC registration number — exact format from the CIPC certificate.
+  // Confirmed Pty Ltd format (YYYY/NNNNNN/07) by Andre.
+  cipcRegNumber: "2016/112724/07",
 
   // Type label shown on legal pages alongside the registration number
-  entityType: "Close Corporation" as "Close Corporation" | "(Pty) Ltd" | "Sole Proprietor",
+  entityType: "(Pty) Ltd" as "Close Corporation" | "(Pty) Ltd" | "Sole Proprietor",
 
   // VAT number — only set if VAT-registered (R1m turnover threshold)
   vatNumber: null as string | null,
@@ -40,11 +37,11 @@ export const COMPANY = {
   publicPhone: null as string | null,
 
   registeredAddress: {
-    line1: "[REGISTERED OFFICE ADDRESS — UPDATE BEFORE DEPLOY]",
-    line2: null as string | null,
+    line1: "57 Aries Avenue",
+    line2: "Sundowner" as string | null,
     city: "Johannesburg",
     province: "Gauteng",
-    postalCode: null as string | null,
+    postalCode: "2188" as string | null,
     country: "South Africa",
   },
 
