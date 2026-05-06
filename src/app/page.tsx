@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default function Home() {
   return (
@@ -197,26 +198,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0A0A0A] py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div>
-              <div className="text-2xl text-white mb-2" style={{fontFamily: 'Georgia, serif', fontStyle: 'italic'}}>Quick<span className="text-[#00C853]">a</span></div>
-              <p className="text-white/35 text-sm">AI websites for SA businesses. Built in 60 seconds.</p>
-            </div>
-            <div className="flex gap-8">
-              <a href="#how-it-works" className="text-white/50 text-sm hover:text-white no-underline">How it works</a>
-              <a href="#pricing" className="text-white/50 text-sm hover:text-white no-underline">Pricing</a>
-              <a href="mailto:hello@quicka.website" className="text-white/50 text-sm hover:text-white no-underline">Contact</a>
-            </div>
-          </div>
-          <div className="border-t border-white/10 mt-8 pt-8 flex justify-between text-white/25 text-xs">
-            <span>© 2025 Quicka</span>
-            <span>Built in South Africa 🇿🇦</span>
-          </div>
-        </div>
-      </footer>
+      {/* Footer — shared component with full legal entity details, links to
+          Terms / Privacy / Refund / Contact / About. Required for PayFast
+          merchant review and POPIA compliance. */}
+      <SiteFooter />
     </main>
   );
 }
