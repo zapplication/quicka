@@ -21,7 +21,7 @@ export default function BuildPage() {
 
   const handleNext = () => {
     if (step === 1 && !email.includes("@")) return;
-    if (step === 2 && !bizName.trim()) return;
+    if (step === 3 && !bizName.trim()) return;
     if (step < totalSteps) setStep((s) => s + 1);
   };
 
