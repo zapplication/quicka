@@ -1,1 +1,34 @@
-body { margin: 0; padding: 0; }
+@import "tailwindcss";
+
+/*
+  Tailwind v4 theme tokens for Quicka.
+  Values declared inside @theme become CSS custom properties AND auto-generate
+  Tailwind utilities. For example, --color-brand-bg yields bg-brand-bg,
+  text-brand-bg, border-brand-bg, etc.
+
+  After this file lands you can replace arbitrary classes like bg-[#F5F2ED]
+  with named tokens like bg-brand-bg in the existing pages — both will work,
+  but tokens are easier to refactor when the brand evolves.
+*/
+@theme {
+  /* ─────────── Brand palette ─────────── */
+  --color-brand-bg: #F5F2ED;
+  --color-brand-bg-alt: #EDE8DF;
+  --color-brand-ink: #0A0A0A;
+  --color-brand-muted: #7A756E;
+  --color-brand-green: #00C853;
+  --color-brand-green-dark: #009624;
+
+  /* ─────────── Typography ───────────
+     The CSS variables below pick up the values that next/font sets on the
+     <html> element in layout.tsx (via the `variable` option of Inter and
+     Fraunces). Falls back gracefully if next/font is unavailable.            */
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-fraunces), "Fraunces", Georgia, "Times New Roman", serif;
+}
+
+/* Reset — keep tiny; Tailwind's preflight handles the rest. */
+body {
+  margin: 0;
+  padding: 0;
+}
