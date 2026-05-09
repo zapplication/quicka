@@ -175,7 +175,7 @@ export default function Home() {
               <div key={i} className={`relative rounded-3xl p-8 ${plan.featured ? 'bg-[#0A0A0A] text-white' : 'bg-white border border-black/8'}`}>
                 {plan.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00C853] text-white text-xs font-bold tracking-wider uppercase px-4 py-1 rounded-full">
-                    Most Popular
+                    Recommended
                   </div>
                 )}
                 <p className={`text-xs font-bold tracking-widest uppercase mb-2 ${plan.featured ? 'text-white/40' : 'text-[#7A756E]'}`}>{plan.name}</p>
