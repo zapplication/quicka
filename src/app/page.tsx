@@ -172,20 +172,20 @@ export default function Home() {
               {name: "Growth", price: 149, featured: true, desc: "More pages, blog and AI content to grow your reach.", features: ["5 pages", "Everything in Basic", "8 services", "AI content", "3 blog posts", "SEO setup", "8 changes/month"]},
               {name: "Business", price: 249, desc: "Full online presence with store, gallery and ordering.", features: ["5 pages", "Everything in Growth", "12 services", "5 blog posts", "Photo gallery", "Online store", "10 changes/month", "Priority support"]},
             ].map((plan, i) => (
-              <div key={i} className={`relative rounded-3xl p-8 ${plan.featured ? 'bg-[#0A0A0A] text-white' : 'bg-white border border-black/8'}`}>
+              <div key={i} className="relative rounded-3xl p-8 bg-white border border-black/8">
                 {plan.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00C853] text-white text-xs font-bold tracking-wider uppercase px-4 py-1 rounded-full">
                     Recommended
                   </div>
                 )}
-                <p className={`text-xs font-bold tracking-widest uppercase mb-2 ${plan.featured ? 'text-white/40' : 'text-[#7A756E]'}`}>{plan.name}</p>
-                <div className="text-5xl text-[#0A0A0A] mb-2" style={{fontFamily: 'Georgia, serif'}}>R{plan.price}<span className={`text-sm ${plan.featured ? 'text-white/40' : 'text-[#7A756E]'}`}>/mo</span></div>
-                <p className={`text-sm mb-6 ${plan.featured ? 'text-white/55' : 'text-[#7A756E]'}`}>{plan.desc}</p>
+                <p className="text-xs font-bold tracking-widest uppercase mb-2 text-[#7A756E]">{plan.name}</p>
+                <div className="text-5xl text-[#0A0A0A] mb-2" style={{fontFamily: 'Georgia, serif'}}>R{plan.price}<span className="text-sm text-[#7A756E]">/mo</span></div>
+                <p className="text-sm mb-6 text-[#7A756E]">{plan.desc}</p>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f, j) => (
                     <li key={j} className="flex items-center gap-3 text-sm">
                       <span className="text-[#00C853]">✓</span>
-                      <span className={plan.featured ? 'text-white/80' : 'text-[#0A0A0A]'}>{f}</span>
+                      <span className="text-[#0A0A0A]">{f}</span>
                     </li>
                   ))}
                 </ul>
