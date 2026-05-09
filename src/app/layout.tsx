@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 /*
   Load Quicka's brand fonts via next/font so they're inlined, self-hosted at
@@ -53,6 +54,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-brand-bg text-brand-ink">
         {children}
+        <WhatsAppFloat />
       </body>
     </html>
   );
