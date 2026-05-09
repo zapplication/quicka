@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
+import { WaitlistForm } from "@/components/WaitlistForm";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#F5F2ED]">
       {/* Ticker */}
-      <div className="bg-[#0A0A0A] overflow-hidden py-2">
+      <div className="hidden md:block bg-[#0A0A0A] overflow-hidden py-2">
         <div className="flex whitespace-nowrap animate-marquee">
           {[
             "Built in 60 Seconds", "No Design Fees", "Free .co.za Domain",
@@ -105,7 +106,7 @@ export default function Home() {
               {icon: "🚀", title: "Built in 60 Seconds", desc: "AI generates your complete site"},
               {icon: "💰", title: "No Design Fees", desc: "Zero upfront costs"},
               {icon: "🔒", title: "No Hidden Costs", desc: "One simple price"},
-              {icon: "🌐", title: ".co.za Domain", desc: "Included on every plan"},
+              {icon: "🌐", title: ".co.za Domain", desc: "FREE on every plan"},
               {icon: "🔐", title: "SSL Included", desc: "Secure site"},
               {icon: "📱", title: "Mobile Optimised", desc: "Works on any device"},
               {icon: "🏠", title: "Hosting Included", desc: "Fast hosting"},
@@ -155,46 +156,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Pricing — audit P0 #2 (refund/cancel/domain ownership trust strip),
+          P0 #3 (no fake "Most Popular"), P1 #6 ("what counts as a change?")
+          + Andre's PR-A: surface FREE .co.za domain prominently, mark
+          Growth and Business as Coming Soon with WaitlistForm capture,
+          drop online-shop language until v2. */}
       <section id="pricing" className="bg-[#F5F2ED] py-24 px-6">
         <div className="max-w-6xl mx-auto">
+          {/* Trust strip — audit P0 #2 */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-12 pb-10 border-b border-black/8">
+            {["7-day money-back", "Cancel anytime", "Your domain stays yours when you cancel"].map((t) => (
+              <div key={t} className="flex items-center gap-2 text-sm text-[#0A0A0A]">
+                <span className="text-[#00C853] text-base" aria-hidden="true">✓</span>
+                <span className="font-medium">{t}</span>
+              </div>
+            ))}
+          </div>
+
           <p className="text-xs font-bold tracking-widest uppercase text-[#00C853] mb-3">Pricing</p>
           <h2 className="text-4xl md:text-5xl text-[#0A0A0A] tracking-tight mb-3" style={{fontFamily: 'Georgia, serif'}}>
             Simple pricing. <em className="text-[#00C853]">No surprises.</em>
           </h2>
-          <p className="text-[#7A756E] text-sm mb-16 max-w-lg">
-            Every plan includes .co.za domain, SSL, contact form and WhatsApp button. Preview free. Cancel anytime.
+          <p className="text-[#7A756E] text-sm mb-16 max-w-xl">
+            Every plan includes a <strong className="text-[#0A0A0A]">FREE .co.za domain</strong>, SSL, hosting, contact form and WhatsApp button. Preview free. Cancel anytime.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {name: "Basic", price: 99, desc: "One clean page. Everything you need to get found online.", features: ["1-page site", "Custom .co.za domain", "SSL certificate", "Up to 5 services", "Contact form", "WhatsApp button", "5 changes/month"]},
-              {name: "Growth", price: 149, featured: true, desc: "More pages, blog and AI content to grow your reach.", features: ["5 pages", "Everything in Basic", "8 services", "AI content", "3 blog posts", "SEO setup", "8 changes/month"]},
-              {name: "Business", price: 249, desc: "Full online presence with store, gallery and ordering.", features: ["5 pages", "Everything in Growth", "12 services", "5 blog posts", "Photo gallery", "Online store", "10 changes/month", "Priority support"]},
+              {name: "Basic", price: 99, available: true, desc: "One clean page. Everything you need to get found online.", features: ["1-page site", "FREE .co.za domain", "SSL certificate", "Up to 5 services", "Contact form", "WhatsApp button", "5 changes/month"]},
+              {name: "Growth", price: 149, comingSoon: true, desc: "More pages, blog and AI content to grow your reach.", features: ["5 pages", "Everything in Basic", "8 services", "AI content", "3 blog posts", "SEO setup", "8 changes/month"]},
+              {name: "Business", price: 249, comingSoon: true, desc: "Full online presence with photo gallery and priority support.", features: ["5 pages", "Everything in Growth", "12 services", "5 blog posts", "Photo gallery", "10 changes/month", "Priority support"]},
             ].map((plan, i) => (
-              <div key={i} className={`relative rounded-3xl p-8 ${plan.featured ? 'bg-[#0A0A0A] text-white' : 'bg-white border border-black/8'}`}>
-                {plan.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00C853] text-white text-xs font-bold tracking-wider uppercase px-4 py-1 rounded-full">
-                    Recommended
+              <div key={i} className={`relative rounded-3xl p-8 bg-white border border-black/8 flex flex-col ${plan.comingSoon ? 'opacity-95' : ''}`}>
+                {plan.comingSoon && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#7A756E]/10 text-[#7A756E] border border-[#7A756E]/25 text-xs font-bold tracking-wider uppercase px-4 py-1 rounded-full backdrop-blur-sm">
+                    Coming Soon
                   </div>
                 )}
-                <p className={`text-xs font-bold tracking-widest uppercase mb-2 ${plan.featured ? 'text-white/40' : 'text-[#7A756E]'}`}>{plan.name}</p>
-                <div className="text-5xl text-[#0A0A0A] mb-2" style={{fontFamily: 'Georgia, serif'}}>R{plan.price}<span className={`text-sm ${plan.featured ? 'text-white/40' : 'text-[#7A756E]'}`}>/mo</span></div>
-                <p className={`text-sm mb-6 ${plan.featured ? 'text-white/55' : 'text-[#7A756E]'}`}>{plan.desc}</p>
-                <ul className="space-y-3 mb-8">
+                <p className="text-xs font-bold tracking-widest uppercase mb-2 text-[#7A756E]">{plan.name}</p>
+                <div className="text-5xl text-[#0A0A0A] mb-2" style={{fontFamily: 'Georgia, serif'}}>R{plan.price}<span className="text-sm text-[#7A756E]">/mo</span></div>
+                <p className="text-sm mb-6 text-[#7A756E]">{plan.desc}</p>
+                <ul className="space-y-3 mb-8 flex-grow">
                   {plan.features.map((f, j) => (
                     <li key={j} className="flex items-center gap-3 text-sm">
-                      <span className="text-[#00C853]">✓</span>
-                      <span className={plan.featured ? 'text-white/80' : 'text-[#0A0A0A]'}>{f}</span>
+                      <span className="text-[#00C853]" aria-hidden="true">✓</span>
+                      <span className="text-[#0A0A0A]">{f}</span>
                     </li>
                   ))}
                 </ul>
-                <Link href="/build" className={`block w-full py-4 rounded-full font-semibold text-sm text-center no-underline ${plan.featured ? 'bg-[#00C853] text-white' : 'bg-[#0A0A0A] text-white'}`}>
-                  Build free preview →
-                </Link>
+                {plan.available && (
+                  <Link href="/build" className="block w-full py-4 rounded-full font-semibold text-sm text-center no-underline bg-[#00C853] text-white hover:bg-[#009624] transition-colors">
+                    Build free preview →
+                  </Link>
+                )}
+                {plan.comingSoon && (
+                  <WaitlistForm tier={plan.name} />
+                )}
               </div>
             ))}
           </div>
+
+          {/* What counts as a change? — audit P1 #6 */}
+          <p className="text-center text-sm text-[#7A756E] mt-12 max-w-2xl mx-auto leading-relaxed">
+            <strong className="text-[#0A0A0A]">What counts as a change?</strong> Adding a service · updating prices · replacing a photo · adding a blog post · changing your hours. A whole-site redesign isn&apos;t a change — that&apos;s a new build.
+          </p>
         </div>
       </section>
 
