@@ -49,7 +49,7 @@ export function SiteFooter() {
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center text-xs text-white/40">
           <span>
-            © {year} {COMPANY.legalName} · {COMPANY.entityType} · {COMPANY.cipcRegNumber}
+            © {year} {COMPANY.legalName} · Reg {COMPANY.cipcRegNumber}
             {COMPANY.vatNumber ? ` · VAT ${COMPANY.vatNumber}` : ""}
           </span>
           <span>Built in {COMPANY.launchMarket} 🇿🇦</span>
