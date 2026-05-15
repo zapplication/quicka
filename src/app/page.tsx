@@ -184,7 +184,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {name: "Basic", price: 99, available: true, desc: "One clean page. Everything you need to get found online.", features: ["1-page site", "FREE .co.za domain", "SSL certificate", "Up to 5 services", "Contact form", "WhatsApp button", "5 changes/month"]},
-              {name: "Growth", price: 149, comingSoon: true, desc: "More pages, blog and AI content to grow your reach.", features: ["5 pages", "Everything in Basic", "8 services", "AI content", "3 blog posts", "SEO setup", "8 changes/month"]},
+              {name: "Growth", price: 149, available: true, desc: "More pages, blog and AI content to grow your reach.", features: ["5 pages", "Everything in Basic", "8 services", "AI content", "3 blog posts", "SEO setup", "8 changes/month"]},
               {name: "Business", price: 249, comingSoon: true, desc: "Full online presence with photo gallery and priority support.", features: ["5 pages", "Everything in Growth", "12 services", "5 blog posts", "Photo gallery", "10 changes/month", "Priority support"]},
             ].map((plan, i) => (
               <div key={i} className={`relative rounded-3xl p-8 bg-white border border-black/8 flex flex-col ${plan.comingSoon ? 'opacity-95' : ''}`}>
