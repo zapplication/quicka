@@ -1,53 +1,57 @@
 import type { MetadataRoute } from "next";
+import { COMPANY } from "@/lib/company";
 
 /**
- * Sitemap for quicka.website. Lists every public marketing page so
- * Google / Bing / DuckDuckGo can index us cleanly. Auto-served at
- * /sitemap.xml by Next.js App Router.
+ * Quicka's sitemap. Next.js 14 auto-serves this at `/sitemap.xml`.
  *
- * /build is excluded — it's a configurator, not content. Including it
- * would dilute crawl budget on a route that has no static content.
+ * Every public route is listed with a reasonable lastModified date,
+ * change frequency, and priority. Pages that don't index well (or that
+ * we don't want search engines pushing customers to mid-flow) are
+ * excluded — `/payment/success`, `/payment/cancel`, `/build`.
+ *
+ * Update `lastModified` when the relevant page's content materially
+ * changes; Google uses this to schedule recrawls.
  */
-const BASE_URL = "https://quicka.website";
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const base = COMPANY.website;
+  const now = new Date();
+
   return [
     {
-      url: `${BASE_URL}/`,
-      lastModified,
+      url: `${base}/`,
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/about`,
-      lastModified,
+      url: `${base}${COMPANY.links.about}`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/contact`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
+      url: `${base}${COMPANY.links.terms}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
     },
     {
-      url: `${BASE_URL}/refund`,
-      lastModified,
+      url: `${base}${COMPANY.links.privacy}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: `${base}${COMPANY.links.refund}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: `${base}${COMPANY.links.contact}`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/terms`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.4,
     },
   ];
 }

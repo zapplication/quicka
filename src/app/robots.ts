@@ -1,24 +1,27 @@
 import type { MetadataRoute } from "next";
+import { COMPANY } from "@/lib/company";
 
 /**
- * robots.txt for quicka.website.
+ * Quicka's robots.txt. Next.js 14 auto-serves this at `/robots.txt`.
  *
- * Allow everything except API routes and the build configurator
- * (which has no SEO value and renders different state per session).
- * Explicit sitemap reference helps Google discover all pages.
+ * Strategy:
+ *  - Allow indexing of the marketing + legal pages.
+ *  - Disallow `/build` (it's a tool, not content; Google indexing it
+ *    would waste crawl budget and confuse searchers who land mid-flow).
+ *  - Disallow `/payment/*` (transactional, not content).
+ *  - Disallow `/api/*` (back-end endpoints, never useful in search).
+ *  - Point Google at the sitemap.
  */
-const BASE_URL = "https://quicka.website";
-
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/build"],
+        disallow: ["/build", "/payment/", "/api/"],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    sitemap: `${COMPANY.website}/sitemap.xml`,
+    host: COMPANY.website,
   };
 }
